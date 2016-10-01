@@ -1,0 +1,42 @@
+
+read issue < /etc/issue
+if [[ "$issue" =~ "Arch Linux" ]]; then
+    pkg_install="pacman -S"
+    pkg_update="pacman -Sy"
+    pkg_search="pacman -Ss"
+    pkg_remove="pacman -Rcs"
+    pkg_query="pacman -Qs"
+    pkg_files="pacman -Ql"
+
+elif [[ "$issue" =~ "Debian" ]] || [[ "$issue" =~ "Ubuntu" ]]; then
+    pkg_install="apt-get install"
+    pkg_update="apt-get update"
+    pkg_search="apt-cache search"
+    pkg_remove="apt-get remove"
+    pkg_query="dpkg -l"
+    pkg_files="dpkg -L"
+
+elif [[ "$issue" =~ "CentOS" ]] || [[ "$issue" =~ "Fedora" ]]; then
+    pkg_install="yum install"
+    pkg_update="yum checkupdate"
+    pkg_search="yum search"
+    pkg_remove="yum erase"
+    pkg_query="yum list available"
+    pkg_files="rpm -ql"
+fi
+
+pkg() {
+    if [ $UID -ne 0 ]; then
+        prefix="sudo"
+    fi
+    command="$1"
+    shift
+    case "$command" in
+        "install") $prefix $pkg_install $@ ;;
+        "remove") $prefix $pkg_remove $@ ;;
+        "search") $prefix $pkg_search $@ ;;
+        "list") $prefix $pkg_query $@ ;;
+        "list-files") $prefix $pkg_files $@ ;;
+        *) echo "Available commands : install | remove | search | list-files | list" ;;
+    esac
+}

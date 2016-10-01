@@ -1,0 +1,7 @@
+
+if ! ps -e | grep -q ssh-agent; then
+    eval `ssh-agent -a /tmp/ssh.agent.$UID`
+fi
+
+export SSH_AUTH_SOCK=/tmp/ssh.agent.$UID
+

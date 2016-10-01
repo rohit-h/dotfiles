@@ -1,0 +1,22 @@
+
+prefix=""
+[ $UID -ne 0 ] && prefix=sudo
+
+setup_gateway() {
+    $prefix iptables -F
+    $prefix iptables -t nat -A POSTROUTING -j MASQUERADE
+    $prefix sysctl net.ipv4.ip_forward=1
+}
+
+hotspot() {
+    local ap_name="Skynet-AP"
+    local ap_passwd="donotenter"
+    local ap_opts="--no-virt --country IN -c 7 --mac 80:86:f2:00:11:22"
+
+    case "$1" in
+        "start") $prefix create_ap --daemon $ap_opts --hidden -n wlp2s0 $ap_name $ap_passwd ;;
+        "stop") $prefix create_ap --stop wlp2s0; $prefix create_ap --fix-unmanaged ;;
+        *) echo "Valid options: start | stop" ;;
+    esac
+}
+

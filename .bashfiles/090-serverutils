@@ -1,0 +1,12 @@
+
+alias io="iostat -x 1"
+
+function genfstab {
+
+    grep ^/dev /proc/mounts | while read line; do 
+        dev=`echo $line | cut -d" " -f1`
+        uuid=`sudo blkid $dev | cut -d\" -f2`
+        echo "$line" | sed "s^$dev^UUID=$uuid^"
+    done
+
+}

@@ -1,0 +1,7 @@
+
+# Thanks AJ
+retry() {
+    until $@; do
+        sleep 1
+    done
+}

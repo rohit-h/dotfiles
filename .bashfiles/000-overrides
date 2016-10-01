@@ -1,0 +1,40 @@
+
+cd() {
+    local dest="$@"
+
+    # If arg is null, cd home
+    [ -z "$dest" ] && command cd $HOME && return 0
+
+    # translate ... => ../.. and so on
+    if echo "$dest" | grep -q -E '^[.]+$'; then
+        dest=`echo "$dest" | sed -e 's@\.@../@g' -e 's@^\.@@'`
+    fi
+
+    # Call inbuilt cd
+    command cd "$dest"
+
+    # Store history
+    local histfile="$HOME/.dirhistory.$UID"
+    pwd >> "$histfile"
+
+    # GC if file is too huge
+    if [ `wc -l "$histfile" | cut -d ' ' -f 1` -gt 1000 ]; then
+        local last_100=`tail -n 100 "$histfile"`
+        echo "$last_100" > "$histfile"
+    fi
+}
+
+cdd() {
+    local histfile="$HOME/.dirhistory.$UID"
+    local histlist=`uniq "$histfile" | sed "s@${PWD}@.@g" | tail -n 20 | tac`
+
+    if [ $# -eq 0 ]; then
+        echo "$histlist" | cat -n
+    else
+        local dir="`echo "$histlist" | sed -n "$1 p"`"
+        echo " >>> $dir"
+        command cd "$dir"
+    fi
+}
+
+cdd 1

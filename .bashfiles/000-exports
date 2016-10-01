@@ -1,0 +1,12 @@
+
+export HISTSIZE=-1
+export HISTFILESIZE=-1
+
+export PATH="$PATH:$HOME/.gem/ruby/2.3.0/bin:$HOME/.bin"
+
+export TERM="rxvt"
+
+export EDITOR="vim"
+
+shopt -s histappend
+

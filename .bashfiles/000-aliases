@@ -1,0 +1,30 @@
+
+## ls shortcuts
+alias l="ls"
+alias ls="ls --color --group-directories-first -h"
+alias ll="ls -l"
+alias up="cd .."
+
+## grep shortcuts
+alias grep="grep --color"
+alias fgrep="grep -F"
+alias igrep="grep -i"
+alias rgrep="grep -ir"
+
+alias rm="rm -iv"
+alias tf="tail -F"
+
+alias p="ping 8.8.8.8"
+
+
+## Git aliases
+alias gi="git init ."
+alias ga="git add"
+alias gc="git commit -m"
+alias gd="git diff"
+alias gp="git pull --rebase"
+alias gP="git push origin HEAD"
+alias gs="git status"
+alias gl="git log"
+alias gls="git log --stat"
+alias gpp="gp && gP"

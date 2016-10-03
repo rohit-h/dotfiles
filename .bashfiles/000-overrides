@@ -1,4 +1,6 @@
 
+## Poking at the fancy Zsh people who can do '..' to go to 'cd ../'
+## This goes beyond with 'cd .....', as good as 'cd ../../../../'
 cd() {
     local dest="$@"
 
@@ -24,6 +26,8 @@ cd() {
     fi
 }
 
+## Run cdd to fetch list of directory paths you've recently been
+## Run cdd N to go to that location
 cdd() {
     local histfile="$HOME/.dirhistory.$UID"
     local histlist=`uniq "$histfile" | sed "s@${PWD}@.@g" | tail -n 20 | tac`

@@ -1,4 +1,7 @@
 
+## Run ssh-agent on a socket if its not running yet to remember-
+## your unlocked private keys across sessions
+
 if ! ps -e | grep -q ssh-agent; then
     eval `ssh-agent -a /tmp/ssh.agent.$UID`
 fi

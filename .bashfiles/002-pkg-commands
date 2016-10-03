@@ -1,4 +1,6 @@
 
+## Life is too short to ponder what platform you're on some times
+
 read issue < /etc/issue
 if [[ "$issue" =~ "Arch Linux" ]]; then
     pkg_install="pacman -S"

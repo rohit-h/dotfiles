@@ -1,0 +1,45 @@
+! Xresources file
+
+URxvt.transparent: true
+URxvt.shading: 25
+URxvt.font: xft:Inconsolata for Powerline:pixelsize=16:antialias=true, xft:Symbola:pixelsize=16
+URxvt*boldFont: xft:Inconsolata for Powerline:bold:pixelsize=16:antialias=true, xft:Symbola:pixelsize=16
+URxvt.letterSpace: 0
+
+URxvt.perl-ext-common: default,matcher
+URxvt.url-launcher: /usr/bin/xdg-open
+URxvt.matcher.button: 1
+URxvt.matcher.rend.0: Uline Bold fg5
+
+! Background color
+URxvt*background: rgb:2E/34/36
+
+! Font color
+URxvt*foreground: rgb:ee/ee/ee
+
+! Other colors
+URxvt*color0: rgb:55/57/53
+URxvt*color1: rgb:ef/29/29
+URxvt*color2: rgb:8a/e2/34
+URxvt*color3: rgb:fc/e9/4f
+URxvt*color4: rgb:72/9f/cf
+URxvt*color5: rgb:ad/7f/a8
+URxvt*color6: rgb:34/e2/e2
+URxvt*color7: rgb:ee/ee/ee
+URxvt*color8: rgb:55/57/53
+URxvt*color9: rgb:ef/29/29
+URxvt*color10: rgb:8a/e2/34
+URxvt*color11: rgb:fc/e9/4f
+URxvt*color12: rgb:72/9f/cf
+URxvt*color13: rgb:ad/7f/a8
+URxvt*color14: rgb:34/e2/e2
+URxvt*color15: rgb:ee/ee/ee
+
+URxvt*.scrollBar: false
+
+URxvt.resize-font.smaller: C-Down
+URxvt.resize-font.bigger: C-Up
+
+URxvt.iso14755: false
+URxvt.iso14755_52: false
+URxvt.borderLess: true

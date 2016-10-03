@@ -1,6 +1,11 @@
 
 alias io="iostat -x 1"
 
+
+## Nice to save this output on some legacy server-
+## that has a million unmanaged mountpoints and its-
+## about to be rebooted
+
 function genfstab {
 
     grep ^/dev /proc/mounts | while read line; do 

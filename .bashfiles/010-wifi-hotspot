@@ -8,10 +8,16 @@ setup_gateway() {
     $prefix sysctl net.ipv4.ip_forward=1
 }
 
+
+## Create a WLAN hotspot with MAC spoof, on Channel 7 and such
+## Courtesy of create_ap script
 hotspot() {
     local ap_name="Skynet-AP"
     local ap_passwd="donotenter"
     local ap_opts="--no-virt --country IN -c 7 --mac 80:86:f2:00:11:22"
+
+    ## If you manage your firewall yourself:
+    # setup_gateway
 
     case "$1" in
         "start") $prefix create_ap --daemon $ap_opts --hidden -n wlp2s0 $ap_name $ap_passwd ;;

@@ -1,0 +1,6 @@
+
+/usr/bin/nm-applet &
+/usr/bin/cbatticon &
+/usr/bin/redshift-gtk &
+/usr/bin/blueberry-tray &
+

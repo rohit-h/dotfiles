@@ -1,0 +1,18 @@
+
+work_apps() {
+    /usr/bin/thunderbird -P Work &
+    /usr/bin/alltray -C -H -- chromium --app='http://web.flock.co' &
+}
+
+home_apps() {
+    /usr/bin/thunderbird -P Home &
+    /usr/bin/clementine &
+}
+
+SSID_LIST="`nmcli -f SSID device wifi list`"
+
+WORK_SSID="7th Floor Corporate WiFi|Cafeteria WiFi"
+HOME_SSID="Beware of Dog"
+
+echo "$SSID_LIST" | grep -E "$WORK_SSID" && work_apps
+echo "$SSID_LIST" | grep -E "$HOME_SSID" && home_apps

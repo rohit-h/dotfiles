@@ -9,9 +9,9 @@ default_prompt() {
     local CYAN="\e[1;36m"
     local PIPE="$WHITE|"
 
-    export PS1="\n ${WHITE}\$(date +%T) ${PIPE} ${GREEN}\$(hostname -s) ${PIPE} ${YELLOW}\$(hostname -i | sed s/127\.0\.0\.1//g | cut -d \  -f 1,2) $PIPE ${BLUE}load \$(cut -d ' ' -f 1-3 /proc/loadavg)\n ${CYAN}\w ${GREEN}\$ ${DEFAULT}"
+    export PS1="${CYAN}\w ${GREEN}\$ ${DEFAULT}"
 }
 
-# default_prompt
+default_prompt
 # Overridden with powerline
-. /usr/lib/python2.7/site-packages/powerline/bindings/bash/powerline.sh
+#. /usr/lib/python2.7/site-packages/powerline/bindings/bash/powerline.sh

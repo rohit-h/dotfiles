@@ -36,7 +36,6 @@ cdd() {
         echo "$histlist" | cat -n
     else
         local dir="`echo "$histlist" | sed -n "$1 p"`"
-        echo " >>> $dir"
         command cd "$dir"
     fi
 }

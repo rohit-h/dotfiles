@@ -1,8 +1,7 @@
 
 sleep 3
 
-/usr/bin/compton &
 /usr/bin/nitrogen --restore
 
-# purely cosmetics
-ps aux | grep -q fluxbox && /usr/bin/fluxbox-remote restart
+/usr/bin/compton &
+/usr/bin/nextcloud &

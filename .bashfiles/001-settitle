@@ -1,0 +1,1 @@
+trap 'echo $BASH_COMMAND |awk '\''!/\007/ {printf "\033]0;%s\007", $0}'\' DEBUG

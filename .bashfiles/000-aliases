@@ -1,3 +1,4 @@
+alias ssh="ssh -v"
 
 ## ls shortcuts
 alias l="ls"

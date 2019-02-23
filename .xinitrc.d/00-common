@@ -1,4 +1,4 @@
 
-/usr/bin/conky &
+#/usr/bin/conky &
 /usr/bin/telegram &
-/usr/bin/pulseaudio &
+/usr/bin/pulseaudio -D

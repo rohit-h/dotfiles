@@ -20,8 +20,8 @@ hotspot() {
     # setup_gateway
 
     case "$1" in
-        "start") $prefix create_ap --daemon $ap_opts --hidden -n wlp2s0 $ap_name $ap_passwd ;;
-        "stop") $prefix create_ap --stop wlp2s0; $prefix create_ap --fix-unmanaged ;;
+        "start") $prefix create_ap --daemon $ap_opts --hidden -n wlp59s0 $ap_name $ap_passwd ;;
+        "stop") $prefix create_ap --stop wlp59s0; $prefix create_ap --fix-unmanaged ;;
         *) echo "Valid options: start | stop" ;;
     esac
 }

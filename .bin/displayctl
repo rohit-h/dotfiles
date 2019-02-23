@@ -1,0 +1,39 @@
+#!/bin/bash
+
+RMON=DP2-1
+LMON=DP1
+EMON=eDP1
+
+RES=1920x1080
+
+single() {
+    xrandr --output $EMON --primary --mode $RES --pos 0x0 --output $LMON --off --output $RMON --off
+    sleep 1
+}
+
+dual() {
+    xrandr --output $EMON --off --output $LMON --primary --mode $RES --output $RMON --mode $RES --pos 1920x0
+    sleep 1
+}
+
+triple() {
+    xrandr --output $EMON --mode $RES --pos 3840x0 --output $LMON --primary --mode $RES --output $RMON --mode $RES --pos 1920x0
+    sleep 1
+}
+
+if [ $# -eq 1 ]; then
+    out=$1
+else
+    out=`echo 1 LaptopOnly 2 Dualscreen 3 Dualscreen+Extended | sed 's/ /\n/g' | zenity --list --column "" --column ""`
+fi
+
+xrandr --addmode $LMON $RES
+xrandr --addmode $RMON $RES
+
+case "$out" in
+	1) single ;;
+	2) dual ;;
+	3) triple ;;
+esac
+
+nitrogen --restore

@@ -1,0 +1,18 @@
+#!/bin/bash
+
+tmpfile="/tmp/sdown.key"
+
+if [ -e "$tmpfile" ]; then
+	rm "$tmpfile"
+	poweroff
+	exit
+fi
+
+touch "$tmpfile"
+
+(echo 99; sleep 0.5; for X in `seq 99 -2 0`; do
+	echo "$X"
+	sleep 0.03
+done) | zenity --progress --auto-close --text="Press key again to poweroff" --title "Shutdown"
+
+rm "$tmpfile"

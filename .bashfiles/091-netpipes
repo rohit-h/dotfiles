@@ -1,0 +1,47 @@
+
+# Dont source this file if netcat is not installed
+which nc &>/dev/null || return 1
+
+netcat_opts() {
+    local header=`nc -h |& head -n 1`
+    if [[ "$header" =~ "OpenBSD" ]]; then
+        # Tweaks for OpenBSD netcat
+        echo "-q 1"
+    else
+        # Probably GNU netcat
+        echo "-c"
+    fi
+}
+
+netpipe_receive() {
+    # Get a random unused port unless specified
+    local port=$1
+    [ -z "$1" ] && port=$RANDOM
+    while [ $port -lt 1024 ] || \
+          [ $port -gt 65535 ] || \
+          [ ! nc -z localhost $port &>/dev/null ]; do
+        port=$(( $RANDOM+$RANDOM ))
+    done
+    echo "Receiving on port $port" >&2
+    nc `netcat_opts` -l -p $port
+}
+
+netpipe_send() {
+    local host=$1
+    local port=$2
+    nc `netcat_opts` $host $port
+}
+
+netpipe() {
+    if [ -t 0 -a -t 1 ]; then
+        echo "Pipe something in/out"
+        return 1
+    fi
+    if [ -t 1 ]; then
+        # If stdout (fd1) is a terminal, then we expect to receive data
+        echo "Sending" >&2
+        netpipe_send $@
+    else
+        netpipe_receive $@
+    fi
+}

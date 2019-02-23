@@ -16,7 +16,7 @@ set $ws_ffox             "3   "
 set $ws_chat             "4   "
 set $ws_home             "5   "
 
-font pango:Noto Sans Display 11
+font pango:Noto Sans Display 9
 
 # window colors
 #                       border              background         text                 indicator
@@ -26,8 +26,37 @@ client.focused_inactive $inactive-bg-color  $inactive-bg-color $inactive-text-co
 client.urgent           $urgent-bg-color    $urgent-bg-color   $text-color          #00ff00
 
 
+bar {
+	status_command i3blocks
+	colors {
+		background $bg-color
+		separator #757575
+		#                  border             background         text
+		focused_workspace  $bg-color          $active-bg-color   $text-color
+		inactive_workspace $inactive-bg-color $inactive-bg-color $text-color
+		urgent_workspace   $urgent-bg-color   $urgent-bg-color   $text-color
+	}
+}
+
+# resize window (you can also use the mouse for that)
+mode "resize" {
+	# same bindings, but for the arrow keys
+	bindsym Left resize shrink width 25 px
+	bindsym Down resize grow height 25 px
+	bindsym Up resize shrink height 25 px
+	bindsym Right resize grow width 25 px
+
+	# back to normal: Enter or Escape
+	bindsym Return mode "default"
+	bindsym Escape mode "default"
+}
+
 # Workspace placement
-#workspace $ws_term output DP1-3
+workspace $ws_term output DP1
+workspace $ws_chat output DP1
+workspace $ws_term2 output DP2-1
+workspace $ws_ffox output DP2-1
+workspace $ws_home output DP2-1
 
 bindsym $mod+1 workspace $ws_term
 bindsym $mod+2 workspace $ws_term2
@@ -49,38 +78,14 @@ assign [class="Spotify"] $ws_home
 assign [class="Clementine"] $ws_home
 assign [class="TelegramDesktop"] $ws_home
 for_window [class="arandr"] floating enable
+for_window [class="XTerm"] floating enable
+for_window [class="cssh"] floating enable
 
-
-bar {
-	status_command i3blocks
-	colors {
-		background $bg-color
-		separator #757575
-		#                  border             background         text
-		focused_workspace  $bg-color          $active-bg-color   $text-color
-		inactive_workspace $inactive-bg-color $inactive-bg-color $text-color
-		urgent_workspace   $urgent-bg-color   $urgent-bg-color   $text-color
-	}
-}
-
-# resize window (you can also use the mouse for that)
-mode "resize" {
-		# same bindings, but for the arrow keys
-		bindsym Left resize shrink width 10 px
-		bindsym Down resize grow height 10 px
-		bindsym Up resize shrink height 10 px
-		bindsym Right resize grow width 10 px
-
-		# back to normal: Enter or Escape
-		bindsym Return mode "default"
-		bindsym Escape mode "default"
-}
-
-
-bindsym $mod+s exec ~/.winsdown
-bindsym $mod+l exec light-locker-command -l
+bindsym $mod+s exec ~/.bin/keycombo-poweroff
+bindsym $mod+z exec ~/.bin/keycombo-suspend
+bindsym $mod+l exec ~/.i3lock/lock.sh
 bindsym $mod+t exec urxvt
-bindsym $mod+d exec /home/rohit/.bin/run
+bindsym $mod+d exec dmenu_run -p 'run '
 bindsym $mod+Shift+q kill
 
 bindsym $mod+Left focus left
@@ -110,8 +115,11 @@ bindsym $mod+Next focus child
 
 bindsym $mod+Shift+c reload
 bindsym $mod+Shift+r restart
-bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
-bindsym $mod+m exec /usr/bin/arandr
+bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'Logout?' -b 'Yes' 'i3-msg exit'"
+bindsym $mod+m exec /home/rohit/.bin/displayctl
+bindsym $mod+Ctrl+1 exec /home/rohit/.bin/displayctl 1
+bindsym $mod+Ctrl+2 exec /home/rohit/.bin/displayctl 2
+bindsym $mod+Ctrl+3 exec /home/rohit/.bin/displayctl 3
 
 bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +5% #increase sound volume
 bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -5% #decrease sound volume

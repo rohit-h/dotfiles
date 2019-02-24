@@ -24,11 +24,6 @@ instance=/
 interval=30
 separator=false
 
-[disk]
-label= HDD
-interval=30
-separator=true
-
 [battery]
 label=
 instance=0
@@ -44,5 +39,10 @@ separator=false
 [time]
 label=
 command=date '+%H:%M'
+interval=5
+separator=false
+
+[time]
+command=date -u '+(%H:%M)'
 interval=5
 separator=false

@@ -1,13 +1,13 @@
 ! Xresources file
 
 Xcursor.theme: DMZ (Black)
-Xcursor.size: 32
+Xcursor.size: 24
 
 URxvt.transparent: true
 URxvt.shading: 25
-URxvt.font: xft:Noto Sans Mono:pixelsize=16:antialias=true, xft:FontAwesome:pixelsize=16
-URxvt*boldFont: xft:Noto Sans Mono:bold:pixelsize=16:antialias=true, xft:FontAwesome:pixelsize=16
-URxvt.letterSpace: 0
+URxvt.font: xft:Noto Sans Mono:pixelsize=14:antialias=true, xft:FontAwesome:pixelsize=14:antialias=true
+URxvt*boldFont: xft:Noto Sans Mono:bold:pixelsize=14:antialias=true, xft:FontAwesome:pixelsize=14:antialias=true
+URxvt.letterSpace: -1
 
 URxvt.perl-ext-common: default,matcher,resize-font
 URxvt.url-launcher: /usr/bin/xdg-open

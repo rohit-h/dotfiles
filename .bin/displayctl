@@ -1,30 +1,41 @@
 #!/bin/bash
 
-RMON=DP2-1
-LMON=DP1
+LMON=DP2-2
+RMON=DP2-3
 EMON=eDP1
 
-RES=1920x1080
+WIDTH=2560
+HEIGHT=1440
+
+RES="${WIDTH}x${HEIGHT}"
 
 single() {
-    xrandr --output $EMON --primary --mode $RES --pos 0x0 --output $LMON --off --output $RMON --off
+    xrandr --output $EMON --mode 1920x1080 --pos 0x0 --primary \
+	   --output $LMON --off \
+	   --output $RMON --off
     sleep 1
 }
 
 dual() {
-    xrandr --output $EMON --off --output $LMON --primary --mode $RES --output $RMON --mode $RES --pos 1920x0
+    xrandr --output $LMON --mode $RES --primary
+    sleep 1
+
+    xrandr --output $EMON --off \
+	   --output $LMON --mode $RES --pos 0x0 --primary \
+	   --output $RMON --mode $RES --pos ${WIDTH}x0
     sleep 1
 }
 
 triple() {
-    xrandr --output $EMON --mode $RES --pos 3840x0 --output $LMON --primary --mode $RES --output $RMON --mode $RES --pos 1920x0
+    dual
+    xrandr --output $EMON --mode 1920x1080 --pos $(( WIDTH*2 ))x0
     sleep 1
 }
 
 if [ $# -eq 1 ]; then
     out=$1
 else
-    out=`echo 1 LaptopOnly 2 Dualscreen 3 Dualscreen+Extended | sed 's/ /\n/g' | zenity --list --column "" --column ""`
+    out=$(echo 1 LaptopOnly 2 Dualscreen 3 Dualscreen+Extended | sed 's/ /\n/g' | zenity --list --column "" --column "")
 fi
 
 xrandr --addmode $LMON $RES
@@ -36,4 +47,5 @@ case "$out" in
 	3) triple ;;
 esac
 
+# restore wallpaper
 nitrogen --restore

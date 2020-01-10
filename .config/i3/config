@@ -27,6 +27,8 @@ client.urgent           $urgent-bg-color    $urgent-bg-color   $text-color      
 
 
 bar {
+	# height 28
+	position top
 	status_command i3blocks
 	colors {
 		background $bg-color
@@ -52,11 +54,20 @@ mode "resize" {
 }
 
 # Workspace placement
-workspace $ws_term output DP1
-workspace $ws_chat output DP1
-workspace $ws_term2 output DP2-1
-workspace $ws_ffox output DP2-1
-workspace $ws_home output DP2-1
+workspace $ws_term output DP2-2
+workspace $ws_chat output DP2-2
+workspace $ws_ffox output DP2-3
+workspace $ws_term2 output DP2-3
+workspace $ws_home output DP2-3
+
+for_window [class="^.*"] border pixel 1
+gaps inner 10
+gaps outer 5
+#smart_gaps on
+smart_borders no_gaps
+
+bindsym $mod+g		gaps outer current plus 5
+bindsym $mod+Shift+g	gaps outer current minus 5
 
 bindsym $mod+1 workspace $ws_term
 bindsym $mod+2 workspace $ws_term2
@@ -77,9 +88,10 @@ assign [class="Chromium"] $ws_chat
 assign [class="Spotify"] $ws_home
 assign [class="Clementine"] $ws_home
 assign [class="TelegramDesktop"] $ws_home
+
 for_window [class="arandr"] floating enable
 for_window [class="XTerm"] floating enable
-for_window [class="cssh"] floating enable
+for_window [class="Cssh"] floating enable
 
 bindsym $mod+s exec ~/.bin/keycombo-poweroff
 bindsym $mod+z exec ~/.bin/keycombo-suspend

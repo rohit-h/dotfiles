@@ -54,16 +54,16 @@ mode "resize" {
 }
 
 # Workspace placement
-workspace $ws_term output DP2-2
-workspace $ws_chat output DP2-2
-workspace $ws_ffox output DP2-3
-workspace $ws_term2 output DP2-3
-workspace $ws_home output DP2-3
+workspace $ws_term output DP2
+workspace $ws_chat output eDP1
+workspace $ws_ffox output DP2
+workspace $ws_term2 output eDP1
+workspace $ws_home output eDP1
 
 for_window [class="^.*"] border pixel 1
-gaps inner 10
+gaps inner 5
 gaps outer 5
-#smart_gaps on
+smart_gaps on
 smart_borders no_gaps
 
 bindsym $mod+g		gaps outer current plus 5
@@ -85,10 +85,10 @@ assign [class="Firefox"] $ws_ffox
 assign [class="Nightly"] $ws_ffox
 assign [class="Thunderbird"] $ws_chat
 assign [class="Chromium"] $ws_chat
-assign [class="Spotify"] $ws_home
 assign [class="Clementine"] $ws_home
 assign [class="TelegramDesktop"] $ws_home
 
+for_window [class="Spotify"] move to workspace $ws_home
 for_window [class="arandr"] floating enable
 for_window [class="XTerm"] floating enable
 for_window [class="Cssh"] floating enable
@@ -97,7 +97,8 @@ bindsym $mod+s exec ~/.bin/keycombo-poweroff
 bindsym $mod+z exec ~/.bin/keycombo-suspend
 bindsym $mod+l exec ~/.i3lock/lock.sh
 bindsym $mod+t exec urxvt
-bindsym $mod+d exec dmenu_run -p 'run '
+bindsym $mod+d exec rofi -show run
+bindsym $mod+Shift+d exec dmenu_run -p 'run '
 bindsym $mod+Shift+q kill
 
 bindsym $mod+Left focus left
@@ -131,7 +132,7 @@ bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'Logout?' -b 'Yes' 'i3-msg ex
 bindsym $mod+m exec /home/rohit/.bin/displayctl
 bindsym $mod+Ctrl+1 exec /home/rohit/.bin/displayctl 1
 bindsym $mod+Ctrl+2 exec /home/rohit/.bin/displayctl 2
-bindsym $mod+Ctrl+3 exec /home/rohit/.bin/displayctl 3
+bindsym XF86Display exec /home/rohit/.bin/displayctl
 
 bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +5% #increase sound volume
 bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -5% #decrease sound volume
@@ -142,6 +143,7 @@ bindsym $mod+p exec arandr
 # Backlight control
 bindsym XF86MonBrightnessUp exec xbacklight +5
 bindsym XF86MonBrightnessDown exec xbacklight -5
+bindsym $mod+Escape exec xbacklight -set 0
 bindsym $mod+F1 exec xbacklight -set 1
 bindsym $mod+F2 exec xbacklight -set 5
 bindsym $mod+F3 exec xbacklight -set 10

@@ -1,0 +1,8 @@
+mode=run
+insensitive=true
+prompt=
+width=700
+height=250
+term=alacritty
+hide_scroll=true
+location=0

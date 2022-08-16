@@ -1,0 +1,101 @@
+env:
+  TERM: xterm-256color
+
+font:
+  normal:
+    family: Noto Sans Mono
+  bold:
+    family: Noto Sans Mono
+  italic:
+    family: Noto Sans Mono
+  size: 10.0
+
+window:
+  opacity: 0.9
+
+# Copyright (c) 2017-present Arctic Ice Studio <development@arcticicestudio.com>
+# Copyright (c) 2017-present Sven Greb <code@svengreb.de>
+
+# Project:    Nord Alacritty
+# Version:    0.1.0
+# Repository: https://github.com/arcticicestudio/nord-alacritty
+# License:    MIT
+# References:
+#   https://github.com/alacritty/alacritty
+
+colors:
+  # Default colors
+  primary:
+    background: '0x002b36'
+    foreground: '0xb3c1c1'
+
+  # Normal colors
+  normal:
+    black:   '0x002b36'
+    red:     '0xdc322f'
+    green:   '0x859900'
+    yellow:  '0xb58900'
+    blue:    '0x268bd2'
+    magenta: '0x6c71c4'
+    cyan:    '0x2aa198'
+    white:   '0x93a1a1'
+
+  # Bright colors
+  bright:
+    black:   '0x657b83'
+    red:     '0xdc322f'
+    green:   '0x859900'
+    yellow:  '0xb58900'
+    blue:    '0x268bd2'
+    magenta: '0x6c71c4'
+    cyan:    '0x2aa198'
+    white:   '0xfdf6e3'
+
+#colors:
+#  primary:
+#    background: '#000000'
+#    foreground: '#d8dee9'
+#    dim_foreground: '#a5abb6'
+#  cursor:
+#    text: '#2e3440'
+#    cursor: '#d8dee9'
+#  vi_mode_cursor:
+#    text: '#2e3440'
+#    cursor: '#d8dee9'
+#  selection:
+#    text: CellForeground
+#    background: '#4c566a'
+#  search:
+#    matches:
+#      foreground: CellBackground
+#      background: '#88c0d0'
+#    bar:
+#      background: '#434c5e'
+#      foreground: '#d8dee9'
+#  normal:
+#    black: '#555753'
+#    red: '#ef2929'
+#    green: '#8ae234'
+#    yellow: '#fce94f'
+#    blue: '#729fcf'
+#    magenta: '#ad7fa8'
+#    cyan: '#34e2e2'
+#    white: '#eeeeee'
+#  bright:
+#    black: '#555753'
+#    red: '#ef2929'
+#    green: '#8ae234'
+#    yellow: '#fce94f'
+#    blue: '#729fcf'
+#    magenta: '#ad7fa8'
+#    cyan: '#34e2e2'
+#    white: '#eeeeee'
+#  dim:
+#    black: '#555753'
+#    red: '#ef2929'
+#    green: '#8ae234'
+#    yellow: '#fce94f'
+#    blue: '#729fcf'
+#    magenta: '#ad7fa8'
+#    cyan: '#34e2e2'
+#    white: '#eeeeee'
